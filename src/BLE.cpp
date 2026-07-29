@@ -44,7 +44,6 @@ void ble_init(){
 
 //change BLE service value
 void update_battery_level(uint8_t blevel){ 
-
   BatteryLevelCharacteristic.setValue(&blevel, 1);
   BatteryLevelCharacteristic.notify();
 }
