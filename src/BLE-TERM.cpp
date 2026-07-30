@@ -36,10 +36,10 @@ class MyCallbacks: public BLECharacteristicCallbacks {
         if (value.length() > 0) {
             Serial.print("Received: ");
             for (int i = 0; i < value.length(); i++) Serial.print(value[i]);
-            Serial.println();
             
-            // Эхо-ответ обратно в терминал клиента
+            //echo back to terminal
             pTxCharacteristic.setValue(value);
+            Serial.print("Sent: "+String(value.c_str()));
             pTxCharacteristic.notify();
         }
     }
@@ -52,12 +52,12 @@ void ble_term_init(){
 
     BLEServer *pServer = BLEDevice::createServer();  //Srever create
     pServer->setCallbacks(new MyServerCallbacks());
-    BLEService *pTerm = pServer->createService(Service_Term_UUID);  //Service create
 
+    BLEService *pTerm = pServer->createService(Service_Term_UUID);  //Service create
     pTerm->addCharacteristic(&pTxCharacteristic);  //Characteristic Tx (Notify)
     pTxCharacteristic.addDescriptor(new BLE2902());  //need for notifications control from client side
     pTerm->addCharacteristic(&pRxCharacteristic);  //Characteristic Rx (Write)
-    pRxCharacteristic.setCallbacks(new MyCallbacks());
+    pRxCharacteristic.setCallbacks(new MyCallbacks()); //set callback for terminal
 
 
     pServer->getAdvertising()->addServiceUUID(Service_Term_UUID);  //Advertising init
