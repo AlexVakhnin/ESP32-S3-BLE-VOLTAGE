@@ -1,12 +1,8 @@
 #include <Arduino.h>
-//#include <BLEDevice.h>
-//#include <BLEServer.h>
-//#include <BLEUtils.h>
-//#include <BLE2902.h>
+
 extern void ble_battery_init();
 extern void ble_term_init();
 extern void update_battery_level(uint8_t blevel);
-
 
 void setup() {
 
@@ -22,8 +18,8 @@ void setup() {
     Serial.printf("Flash size:\t%d (bytes)\r\n", ESP.getFlashChipSize());
     Serial.println("-----------------------------------------");
 
-    //ble_battery_init();
-    ble_term_init();
+    ble_battery_init(); //test Battery Service
+    //ble_term_init();  //test Nordic UART Service (NUS)
 
     Serial.println("OK!-START..");
 
@@ -32,8 +28,8 @@ void setup() {
 uint8_t battery_level = 0;
 
 void loop() {
-  //update_battery_level(battery_level);  //change BLE service value
-  //Serial.println(int(battery_level));
+  update_battery_level(battery_level);  //change Battery Service value
+  Serial.println(int(battery_level));
 
   delay(5000);
 
