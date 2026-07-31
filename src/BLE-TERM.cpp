@@ -34,12 +34,12 @@ class MyCallbacks: public BLECharacteristicCallbacks {
     void onWrite(BLECharacteristic *pCharacteristic) {
         std::string value = pCharacteristic->getValue();
         if (value.length() > 0) {
-            Serial.print("Received: ");
-            for (int i = 0; i < value.length(); i++) Serial.print(value[i]);
+            String rx_str = String(value.c_str());
+            Serial.println("Received: "+rx_str);
             
-            //echo back to terminal
-            pTxCharacteristic.setValue(value);
-            Serial.print("Sent: "+String(value.c_str()));
+            String tx_str = "!"+rx_str;
+            pTxCharacteristic.setValue(tx_str.c_str());
+            Serial.println("Sent: "+tx_str);
             pTxCharacteristic.notify();
         }
     }

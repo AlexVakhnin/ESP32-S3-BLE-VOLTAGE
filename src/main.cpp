@@ -18,8 +18,8 @@ void setup() {
     Serial.printf("Flash size:\t%d (bytes)\r\n", ESP.getFlashChipSize());
     Serial.println("-----------------------------------------");
 
-    ble_battery_init(); //test Battery Service
-    //ble_term_init();  //test Nordic UART Service (NUS)
+    //ble_battery_init(); //test Battery Service
+    ble_term_init();  //test Nordic UART Service (NUS)
 
     Serial.println("OK!-START..");
 
@@ -28,8 +28,8 @@ void setup() {
 uint8_t battery_level = 0;
 
 void loop() {
-  update_battery_level(battery_level);  //change Battery Service value
-  Serial.println(int(battery_level));
+  //update_battery_level(battery_level);  //change Battery Service value
+  //Serial.println(int(battery_level));
 
   delay(5000);
 

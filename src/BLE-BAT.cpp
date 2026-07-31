@@ -12,11 +12,12 @@
 
 
 bool _BLEClientConnected = false;
-#define BatteryServiceUUID BLEUUID((uint16_t)0x180F) //set Service UUID=>"Battery"
+#define BatteryServiceUUID "0000180F-0000-1000-8000-00805f9b34fb"  //BLEUUID((uint16_t)0x180F)
+#define Characteristic_UUID "00002a19-0000-1000-8000-00805f9b34fb"  //BLEUUID((uint16_t)0x2A19
 
 //Create Characteristic with their UUID and Properties=(R,N)
-BLECharacteristic BatteryLevelCharacteristic(BLEUUID((uint16_t)0x2A19),
-                                             BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+BLECharacteristic BatteryLevelCharacteristic(Characteristic_UUID,
+                    BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
 BLEDescriptor BatteryLevelDescriptor(BLEUUID((uint16_t)0x2901)); //Create Descriptor
 
 //Callback functions
@@ -44,6 +45,7 @@ void ble_battery_init(){
     BatteryLevelDescriptor.setValue("Percentage 0 - 100");  //Descriptor init
     BatteryLevelCharacteristic.addDescriptor(&BatteryLevelDescriptor);  //Descriptor add
     BatteryLevelCharacteristic.addDescriptor(new BLE2902());  //need for notifications control
+    
     pServer->getAdvertising()->addServiceUUID(BatteryServiceUUID);  //Advertising init
     pBattery->start(); //Service start
     pServer->getAdvertising()->start(); //Advertising start
