@@ -27,7 +27,7 @@ async def main():
     v_min = 11.88
     command =  ["shutdown", "now"]
     try:
-        async with BleakClient(ble_address, adapter = "hci0") as client: #UB500 as hci0 work fine! 
+        async with BleakClient(ble_address) as client: #UB500 as hci0 work fine! 
             print(f"Connected: {client.is_connected}")
             await client.write_gatt_char(MODEL_NBR_UUID, data_to_send, response=True)
             print(f"Data '{data_to_send.decode()}' written to {MODEL_NBR_UUID}.")

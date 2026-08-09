@@ -4,7 +4,7 @@ import asyncio
 from bleak import BleakClient, BleakError
 
 async def main():
-    ble_address = "24:EC:4A:7E:21:41"
+    ble_address = "10:20:BA:31:12:B9"
     TX_UUID = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
     RX_UUID = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
     data_to_send = bytearray(b"ati")

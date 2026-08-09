@@ -13,7 +13,7 @@
 
 bool _BLEClientConnected = false;
 #define BatteryServiceUUID "0000180F-0000-1000-8000-00805f9b34fb"  //BLEUUID((uint16_t)0x180F)
-#define Characteristic_UUID "00002a19-0000-1000-8000-00805f9b34fb"  //BLEUUID((uint16_t)0x2A19
+#define Characteristic_UUID "00002a19-0000-1000-8000-00805f9b34fb"  //BLEUUID((uint16_t)0x2A19)
 
 //Create Characteristic with their UUID and Properties=(R,N)
 BLECharacteristic BatteryLevelCharacteristic(Characteristic_UUID,

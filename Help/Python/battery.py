@@ -3,7 +3,7 @@ import subprocess
 from bleak import BleakClient
 
 # --- НАСТРОЙКИ ---
-DEVICE_ADDRESS = "24:EC:4A:7E:21:41"  # Замените на MAC вашего устройства
+DEVICE_ADDRESS = "10:20:BA:31:12:B9"  # Замените на MAC вашего устройства
 BATTERY_CHAR_UUID = "00002a19-0000-1000-8000-00805f9b34fb"  # Стандартный UUID характеристики заряда
 # CRITICAL_LEVEL = 20  # Порог заряда (в %), при котором сработает скрипт
 # SCRIPT_PATH = r"C:\path\to\your\script.bat"  # Полный путь к вашему Windows-скрипту (.bat, .exe или .ps1)
