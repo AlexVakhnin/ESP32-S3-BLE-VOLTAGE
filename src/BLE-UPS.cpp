@@ -14,8 +14,8 @@
 #define Characteristic_Batt_UUID "00002a19-0000-1000-8000-00805f9b34fb"  //offset: 0x2A19 (Read, Notify)
 
 
-extern void set_blue();
-extern void set_green();
+extern void led_on();
+extern void led_off();
 bool _BLEConnected = false;
 
 //Create Characteristics with their UUID and Properties
@@ -29,14 +29,14 @@ class MyServerCallbacks : public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
         Serial.println("Event-Connect..");
         _BLEConnected = true;
-        set_green();
+        led_on();
     };
     void onDisconnect(BLEServer* pServer) {
         _BLEConnected = false;
         Serial.println("Event-Disconnect..");
         delay(300); // give the bluetooth stack the chance to get things ready
         BLEDevice::startAdvertising();  // restart advertising
-        set_blue();
+        led_off();
     }
 };
 

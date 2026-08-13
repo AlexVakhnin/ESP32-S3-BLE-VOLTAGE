@@ -11,18 +11,18 @@ extern void ble_term_init();
 extern void update_battery_level(uint8_t blevel);
 
 
-void set_blue(){
-    rgb_led.setPixelColor(0, rgb_led.Color(0, 0, 255));
+void led_off(){
+    rgb_led.setPixelColor(0, rgb_led.Color(20, 20, 20));
     rgb_led.show();
 }
-void set_green(){
-    rgb_led.setPixelColor(0, rgb_led.Color(0, 255, 0));
+void led_on(){
+    rgb_led.setPixelColor(0, rgb_led.Color(0, 0, 150));
     rgb_led.show();
 }
 
 
 void setup() {
-    delay(7000);  //10 sec for Platformio start terminal...
+    delay(10000);  //10 sec for Platformio start terminal...
 
     Serial.begin(115200);
 
@@ -37,7 +37,7 @@ void setup() {
 
     rgb_led.begin();           // Инициализация светодиода
     rgb_led.setBrightness(30); // Установка яркости от 0 до 255
-    set_blue();
+    led_off();
 
     ble_term_init();  //test Nordic UART Service (NUS)
 
